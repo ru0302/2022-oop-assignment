@@ -1,7 +1,5 @@
 package ie.tudublin;
 
-import javax.swing.border.Border;
-
 import processing.core.PApplet;
 
 public class Loops extends PApplet {
