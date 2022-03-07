@@ -118,7 +118,7 @@ public class LifeBoard {
 
                 if(board[row][col])
                 {
-                    pa.fill(255, 255, 255);
+                    pa.fill(0, 0, 255);
                 }
                 else
                 {
