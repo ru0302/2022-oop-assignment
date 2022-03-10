@@ -5,9 +5,7 @@ import processing.core.PApplet;
 public class LifeBoard {
     boolean[][] board;
     boolean[][] next;
-
     int size;
-
     float cellSize;
     PApplet pa;
 
@@ -22,9 +20,9 @@ public class LifeBoard {
 
     public void randomise()
     {
-        for(int row = 0; row < size; row++)
+        for(int row = 0 ; row < size ; row ++)
         {
-            for(int col = 0; col < size; col++)
+            for(int col = 0 ; col < size ; col ++)
             {
                 board[row][col] = pa.random(1.0f) > 0.5f;
             }
@@ -33,15 +31,19 @@ public class LifeBoard {
 
     public void update()
     {
-        for(int row = 0; row < size; row++)
+        // If cell is alive
+        // 2 -3 - Survives
+        // if a dead cell has 3 neighbours - comes to life
+
+        for(int row = 0 ; row < size ; row ++)
         {
-            for(int col = 0; col < size; col++)
+            for (int col = 0 ; col < size ; col ++)
             {
                 int count = countCellsAround(row, col);
 
-                if(isAlive(row, col))
+                if (isAlive(row, col))
                 {
-                    if(count == 2 || count == 3)
+                    if (count == 2 || count == 3)
                     {
                         next[row][col] = true;
                     }
@@ -52,7 +54,7 @@ public class LifeBoard {
                 }
                 else
                 {
-                    if(count == 3)
+                    if (count == 3)
                     {
                         next[row][col] = true;
                     }
@@ -74,16 +76,17 @@ public class LifeBoard {
     {
         int count = 0;
 
-        for(int i = row - 1; i <= row + 1; i++)
-        {
-            for(int j = col - 1; j <= col + 1; j++)
-            {
-                if(! (i == row && j == col))
-                {
+        // Your bit goes here!
 
-                    if(isAlive(i, j))
+        for(int i = row - 1 ; i <= row + 1 ; i ++)
+        {
+            for(int j = col -1 ; j <= col + 1; j ++)
+            {
+                if (! (i == row && j == col))
+                {
+                    if (isAlive(i, j))
                     {
-                        count++;
+                        count ++;
                     }
                 }
             }
@@ -92,11 +95,19 @@ public class LifeBoard {
         return count;
     }
 
+    public void setAlive(int row, int col, boolean alive)
+    {
+        if (row >= 0 && row < size && col >= 0 && col < size)
+        {
+            board[row][col] = alive;
+        }
+    }
+
     public boolean isAlive(int row, int col)
     {
-        if(row >= 0 && row < size && col >= 0 && col < size)
+        if (row >= 0 && row < size && col >= 0 && col < size)
         {
-            return board[row][col];
+            return board[row][col]; 
         }
         else
         {
@@ -107,18 +118,18 @@ public class LifeBoard {
     public void render()
     {
         pa.background(0);
-        for(int row = 0; row < size; row++)
+        for(int row = 0 ; row < size ; row ++)
         {
-            for(int col = 0; col < size; col++)
+            for(int col = 0 ; col < size ; col ++)
             {
                 float x = PApplet.map(col, 0, size, 0, pa.width);
                 float y = PApplet.map(row, 0, size, 0, pa.height);
                 x = cellSize * col;
                 y = cellSize * row;
 
-                if(board[row][col])
+                if (board[row][col])
                 {
-                    pa.fill(0, 0, 255);
+                    pa.fill(0, 255, 0);
                 }
                 else
                 {
@@ -126,7 +137,7 @@ public class LifeBoard {
                 }
                 pa.rect(x, y, cellSize, cellSize);
             }
-
         }
+        
     }
 }
