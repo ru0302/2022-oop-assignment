@@ -8,7 +8,6 @@ import processing.data.TableRow;
 
 public class StarMap extends PApplet {
 
-
     
     void drawGrid()
     {

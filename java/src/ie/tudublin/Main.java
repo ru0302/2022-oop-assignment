@@ -83,13 +83,13 @@ public class Main
 
     }
 
-    public void pitch()
-    {
-        PitchSpeller ps = new PitchSpeller();
-        System.out.println(ps.spell(330));
-        System.out.println(ps.spell(420));
-        System.out.println(ps.spell(1980));
-    }
+    // public void pitch()
+    // {
+    //     PitchSpeller ps = new PitchSpeller();
+    //     System.out.println(ps.spell(330));
+    //     System.out.println(ps.spell(420));
+    //     System.out.println(ps.spell(1980));
+    // }
 
     public static void main(String[] args)
     {
