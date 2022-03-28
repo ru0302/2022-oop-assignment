@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-
+import ie.tudublin.Audio2.PitchSpeller;
 
 public class Main
 {
@@ -76,6 +76,15 @@ public class Main
         cat.kill();
 
     }
+
+    public void pitch()
+    {
+        PitchSpeller ps = new PitchSpeller();
+        System.out.println(ps.spell(330));
+        System.out.println(ps.spell(420));
+        System.out.println(ps.spell(1980));
+    }
+
     public static void main(String[] args)
     {
         audio2();
