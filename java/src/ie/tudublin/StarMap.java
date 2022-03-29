@@ -2,8 +2,6 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 
-import com.jogamp.opengl.FBObject.RenderAttachment;
-
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
@@ -48,6 +46,7 @@ public class StarMap extends PApplet {
             stars.add(s);
         }
     }
+
 
     public void settings() {
         size(800, 800);

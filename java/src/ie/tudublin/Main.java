@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-import ie.tudublin.Audio2.PitchSpeller;
+import javax.swing.JFrame;
 
 public class Main
 {
@@ -94,6 +94,12 @@ public class Main
     public static void main(String[] args)
     {
         starMap();
+
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setBounds(30, 30, 200, 200);
+        window.getContentPane().add(window, new StarMap());
+        window.setVisible(true);
 
         // Tara Misty
         // Tara Tara
