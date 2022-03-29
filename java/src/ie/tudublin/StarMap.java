@@ -2,6 +2,9 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 
+// import com.jogamp.newt.event.MouseEvent;
+// import com.jogamp.newt.event.MouseListener;
+
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
@@ -11,15 +14,13 @@ public class StarMap extends PApplet {
     ArrayList<Star> stars = new ArrayList<Star>();
 
     public float border;
-    
-    void drawGrid()
-    {
-        
+
+    void drawGrid() {
+
         stroke(255, 0, 255);
         textAlign(CENTER, CENTER);
         textSize(20);
-        for(int i = -5; i <= 5; i++)
-        {
+        for (int i = -5; i <= 5; i++) {
             float x = map(i, -5, 5, border, width - border);
             line(x, border, x, height - border);
             line(border, x, width - border, x);
@@ -29,33 +30,26 @@ public class StarMap extends PApplet {
         }
     }
 
-    void printStars()
-    {
-        for(Star s:stars)
-        {
+    void printStars() {
+        for (Star s : stars) {
             System.out.println(s);
         }
     }
 
-    void loadStars()
-    {
+    void loadStars() {
         Table table = loadTable("HabHYG15ly.csv", "header");
-        for(TableRow r:table.rows())
-        {
+        for (TableRow r : table.rows()) {
             Star s = new Star(r);
             stars.add(s);
         }
     }
 
-
     public void settings() {
         size(800, 800);
     }
 
+    public void mouseClicked() {
 
-    public void mouseClicked()
-    {
-        
     }
 
     public void setup() {
@@ -66,16 +60,13 @@ public class StarMap extends PApplet {
         border = width * 0.1f;
     }
 
-    public void drawStars()
-    {
-        for(Star s:stars)
-        {
+    public void drawStars() {
+        for (Star s : stars) {
             s.render(this);
         }
     }
 
-    public void draw() 
-    {
+    public void draw() {
         background(0);
         drawGrid();
         drawStars();
