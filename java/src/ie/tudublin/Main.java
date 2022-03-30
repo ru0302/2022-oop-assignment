@@ -2,6 +2,8 @@ package ie.tudublin;
 
 import javax.swing.JFrame;
 
+import ie.tudublin.C20391453.MyVisual;
+
 public class Main
 {
     public static void helloProcessing()
@@ -93,13 +95,13 @@ public class Main
 
     public static void main(String[] args)
     {
-        starMap();
+        // starMap();
 
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(30, 30, 200, 200);
-        window.getContentPane().add(window, new StarMap());
-        window.setVisible(true);
+        // JFrame window = new JFrame();
+        // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // window.setBounds(30, 30, 200, 200);
+        // window.getContentPane().add(window, new StarMap());
+        // window.setVisible(true);
 
         // Tara Misty
         // Tara Tara

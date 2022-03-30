@@ -8,12 +8,21 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
+import processing.event.MouseEvent;
 
 public class StarMap extends PApplet {
 
     ArrayList<Star> stars = new ArrayList<Star>();
 
     public float border;
+
+    private int numClicks;
+    private float x1;
+    private float y1;
+    private float x2;
+    private float y2;
+    private float preDist;
+    private double finalDist;
 
     void drawGrid() {
 
@@ -44,11 +53,35 @@ public class StarMap extends PApplet {
         }
     }
 
+    void distBetweenStars() {
+        preDist = (((x2 - x1) * 2) + ((y2 - y1) * 2));
+        finalDist = Math.sqrt(preDist);
+        System.out.println("Distance between the two stars is " + finalDist);
+    }
+
+    void drawStarLine() {
+        line(x1, y1, x2, y2);
+    }
+
     public void settings() {
         size(800, 800);
     }
 
-    public void mouseClicked() {
+    public void mouseClicked(MouseEvent mouse) {
+        numClicks++;
+
+        if (numClicks % 2 != 0) {
+            x1 = mouse.getX();
+            y1 = mouse.getY();
+        }
+
+        else {
+            x2 = mouse.getX();
+            y2 = mouse.getY();
+        }
+
+        // repaint();
+        drawStarLine();
 
     }
 
@@ -70,5 +103,6 @@ public class StarMap extends PApplet {
         background(0);
         drawGrid();
         drawStars();
+        drawStarLine();
     }
 }
