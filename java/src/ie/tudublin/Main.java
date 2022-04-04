@@ -2,8 +2,6 @@ package ie.tudublin;
 
 import javax.swing.JFrame;
 
-import ie.tudublin.C20391453.MyVisual;
-
 public class Main
 {
     public static void helloProcessing()
@@ -95,7 +93,7 @@ public class Main
 
     public static void main(String[] args)
     {
-        // starMap();
+        starMap();
 
         // JFrame window = new JFrame();
         // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
