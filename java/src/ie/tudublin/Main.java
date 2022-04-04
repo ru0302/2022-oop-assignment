@@ -59,6 +59,12 @@ public class Main
         processing.core.PApplet.runSketch( a, new ColorfulLife());
     }
 
+    public static void YASC()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new YASC());
+    }
+
     public void cat()
     {
         System.out.println("Hello world");
@@ -93,7 +99,7 @@ public class Main
 
     public static void main(String[] args)
     {
-        starMap();
+        YASC();
 
         // JFrame window = new JFrame();
         // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
