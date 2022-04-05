@@ -2,6 +2,8 @@ package ie.tudublin;
 
 import javax.swing.JFrame;
 
+import ie.tudublin.C20391453.OOP_Assignment;
+
 public class Main
 {
     public static void helloProcessing()
@@ -89,6 +91,12 @@ public class Main
 
     }
 
+    public static void OOP_Assignment()
+    {
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch(a, new OOP_Assignment());
+    }
+
     // public void pitch()
     // {
     //     PitchSpeller ps = new PitchSpeller();
@@ -99,7 +107,8 @@ public class Main
 
     public static void main(String[] args)
     {
-        YASC();
+        // YASC();
+        OOP_Assignment();
 
         // JFrame window = new JFrame();
         // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
