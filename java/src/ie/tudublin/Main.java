@@ -110,6 +110,9 @@ public class Main
         // YASC();
         OOP_Assignment();
 
+        // audio1();
+        // audio2();
+
         // JFrame window = new JFrame();
         // window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // window.setBounds(30, 30, 200, 200);

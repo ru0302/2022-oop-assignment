@@ -62,7 +62,7 @@ public class Audio2 extends PApplet
         //ab = ap.mix;
         colorMode(RGB);
 
-        fft = new FFT(1024, 44100);
+        fft = new FFT(2048, 44100);
 
         y = height / 2;
         smoothedY = y;
