@@ -1,5 +1,7 @@
 package ie.tudublin;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 public class YASC extends PApplet {
@@ -9,11 +11,14 @@ public class YASC extends PApplet {
     // Player p3;
     PowerUp pu1;
 
+    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+
     public void setup() {
         p1 = new Player(100, 100, 50, this);
         p2 = new Player(200, 200, 50, this);
         // p3 = new Player(250, 250, 50, this);
         pu1 = new PowerUp(50, this);
+
     }
 
     public void settings() {
@@ -27,8 +32,6 @@ public class YASC extends PApplet {
         p1.render();
         p2.update();
         p2.render();
-        // p3.update();
-        // p3.render();
         pu1.update();
         pu1.render();
     }

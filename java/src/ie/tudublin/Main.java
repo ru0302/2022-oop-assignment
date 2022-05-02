@@ -97,6 +97,12 @@ public class Main
         processing.core.PApplet.runSketch(a, new OOP_Assignment());
     }
 
+    public static void circletest()
+    {
+        String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch(a, new circletest());
+    }
+
     // public void pitch()
     // {
     //     PitchSpeller ps = new PitchSpeller();
@@ -108,6 +114,8 @@ public class Main
     public static void main(String[] args)
     {
         // YASC();
+        // circletest();
+        // colorfulLife();
         OOP_Assignment();
 
         // audio1();

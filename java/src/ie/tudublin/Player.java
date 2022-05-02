@@ -51,6 +51,10 @@ public class Player {
             if (yasc.key == 'd') {
                 rotation += 0.1f;
             }
+
+            if (yasc.key == ' ') {
+                yasc.gameObjects.add(new Bullet(yasc, x, y, rotation));
+            }
         }
 
         fx = YASC.sin(rotation);
