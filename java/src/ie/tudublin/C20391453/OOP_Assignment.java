@@ -9,96 +9,81 @@ import processing.core.PApplet;
 
 public class OOP_Assignment extends PApplet {
     Minim minim;
-    AudioPlayer ap;
-    AudioInput ai;
-    AudioBuffer ab;
+    AudioPlayer audio;
+    AudioInput input;
+    AudioBuffer buff;
+
+    float[] lerpedBuff;
+    float y = 0;
+    float smoothY = 0;
+    float smoothAmp = 0;
+
     FFT fft;
 
-    int mode = 0;
-
-    float[] lerpedBuffer;
-
-    public void keyPressed() {
-        if (key >= '0' && key <= '9') {
-            mode = key - '0';
-        }
-
-        if (keyCode == ' ') {
-            if (ap.isPlaying()) {
-                ap.pause();
-            } else {
-                ap.rewind();
-                ap.play();
-            }
-        }
-    }
-
     public void settings() {
-        size(1024, 1024, P3D);
-        // fullScreen(P3D, SPAN);
+        // size(1024, 1024, P3D);
+        fullScreen(P3D, SPAN);
     }
 
     public void setup() {
         minim = new Minim(this);
 
-        ap = minim.loadFile("WARLORDZ (Bailo & ISOxo Remix).mp3", 1024);
-        ap.play();
-        ab = ap.mix;
+        audio = minim.loadFile("WARLORDZ (Bailo & ISOxo Remix).mp3", 1024);
+        audio.play();
+        buff = audio.mix;
+        colorMode(HSB);
 
-        fft = new FFT(ap.bufferSize(), ap.sampleRate());
+        fft = new FFT(2048, 44100);
 
-        colorMode(RGB);
+        y = height / 2;
+        smoothY = y;
 
-        lerpedBuffer = new float[width];
+        lerpedBuff = new float[width];
     }
 
-    float[] real; // stores data from real part of audio spectrum
-    float[] img; // stores data from "fake" part of audio spectrum
+    float off = 0;
 
     public void draw() {
-        fft.forward(ap.mix);
-        real = fft.getSpectrumReal();
-        img = fft.getSpectrumImaginary();
-
-        int xOffset = (width - fft.specSize()) / 2;
-        int yOffset = (height - fft.specSize()) / 2;
-        float x = width / 2;
-        float y = height / 2;
-
+        background(0);
+        float halfH = height / 2;
+        float halfW = width / 2;
         float avg = 0;
         float sum = 0;
-        float smoothedAmp = 0;
+        off += 1;
 
-        for (int i = 0; i < ab.size(); i++) {
-            sum += abs(ab.get(i));
-            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.05f);
+        for (int i = 0; i < buff.size(); i++) {
+            sum += abs(buff.get(i));
+            lerpedBuff[i] = lerp(lerpedBuff[i], buff.get(i), 0.05f);
         }
 
-        avg = sum / (float) ab.size();
+        avg = sum / (float) buff.size();
 
-        smoothedAmp = lerp(smoothedAmp, avg, 0.1f);
+        smoothAmp = lerp(smoothAmp, avg, 0.1f);
 
-        switch (mode) {
-            case 0:
-                background(0);
-                for (int i = 0; i < fft.specSize(); i++) {
-                    stroke(real[i] * 25, img[i] * 25, fft.getBand(i) * 10);
-                    // line(i + xOffset, height / 2, i + xOffset + real[i] * 20, height / 2 + img[i]
-                    // * 20);
-                    // circle(xOffset, yOffset, i + xOffset + real[i] * 5);
-                    line(width / 2, height / 2, i + xOffset + real[i] * 10, i + yOffset + img[i] * 10);
-                    circle(x + real[i], y + img[i], i);
-                }
-                break;
+        float cx = width / 2;
+        float cy = height / 2;
+        float angle = 0;
 
-            case 1:
-                background(0);
-                for (int i = 0; i < ab.size(); i++) {
-                    stroke(real[i] * 10, img[i] * 10, fft.getBand(i) * 5);
-                    float f = lerpedBuffer[i] * (height / 2) * 4.0f;
-                    rect(i, (height / 2) + f, i, (height / 2) - f);
-                }
-                break;
+        for (int i = 0; i < audio.bufferSize() - 1; i += 10) {
+            float radius = map(smoothAmp, 0, 0.1f, 50, 100);
+            angle = map(i, 0, audio.bufferSize(), 0, 2 * PI);
+            // stroke(color(map(abs(audio.mix.get(i) * 100), 0, 150, 150, 200), 250, 250));
+            float c = map(i, 0, buff.size(), 0, 255);
+            stroke(c, 255, 255);
+
+            float lineX = cos(angle) * abs(audio.mix.get(i) * 250);
+            float lineY = sin(angle) * abs(audio.mix.get(i) * 250);
+
+            float xPos = cx + (cos(angle) * radius) + lineX;
+            float yPos = cy + (sin(angle) * radius) + lineY;
+
+            float lx = cx + (cos(angle) * radius);
+            float ly = cy + (sin(angle) * radius);
+
+            strokeWeight(3);
+            line(lx, ly, xPos, yPos);
         }
+
     }
+
 }
