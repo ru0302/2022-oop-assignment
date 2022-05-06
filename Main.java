@@ -80,7 +80,7 @@ public class Main
         System.out.println(misty);
         System.out.println(lucy);
 
-        
+
         Cat cat = new Cat("Ginger");
 
         while(cat.getNumLives() > 0)
@@ -129,6 +129,6 @@ public class Main
 
         // Tara Misty
         // Tara Tara
-        
+
     }
 }
