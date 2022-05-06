@@ -1,11 +1,9 @@
 # Music Visualiser Project
 
-Name:
 Name and Student Number:
 Sen Yeung D19125591
 Conor Malone C20391453
 
-Student Number: 
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
